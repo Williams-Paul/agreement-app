@@ -33,3 +33,10 @@
   - Bootstrap
   - Bootswatch
   - Fonts Awesome
+
+# Hosts
+  Para poder trabajar con el dominio [agreement-app.com] (http://agreement-app.com) agregar esta linea de codigo en su archivo de hosts.
+
+  ```
+  127.0.0.1 agreement-app.com
+  ```
