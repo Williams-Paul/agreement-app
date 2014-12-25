@@ -25,7 +25,7 @@ relative_assets = true
 # Path locations.
 sass_dir              = "source"              # - The directory where to look for
                                               #   generating stylesheets.
-css_dir               = "../css"              # - The path for placing compiled
+css_dir               = "../styles"              # - The path for placing compiled
                                               #   CSS. Note that this path points
                                               #   one directory above the current
                                               #   directory.
