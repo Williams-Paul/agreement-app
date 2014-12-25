@@ -71,6 +71,7 @@ assets/node_modules
 assets/lib
 assets/styles
 assets/js
+assets/sass/.sass-cache/
 
 ################################################
 # Sails.js / Waterline / Grunt
