@@ -39,10 +39,10 @@ var ProductForm = React.createClass({
         <Input 
           type="text"
           addonBefore="s/."
-          label="Price"
+          label="Precio Total"
           name="price"/>
-        <Input 
-          type='submit' 
+        <Input
+          type='submit'
           value='Submit button'/>
       </form>
     );
