@@ -16,7 +16,7 @@
   - Entidades responsables
 
 
-## Technologies
+## Technologias
 
 ### Backend
   - Sails
@@ -40,3 +40,25 @@
   ```
   127.0.0.1 agreement-app.com
   ```
+
+# Para iniciar la App
+  
+  Antes de iniciar debes de descargar las dependencias y compilar con:
+  
+  ```
+  npm install
+  ```
+  
+  
+  Para iniciar el servidor:
+  
+  ```
+  sails lift
+  ```
+  
+  Para compilar permanente y hacer un scaneo las modificacione de archivos de frontend con browserify usar:
+  
+  ```
+  npm start
+  ```
+  
