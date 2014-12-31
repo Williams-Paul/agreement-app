@@ -10,6 +10,8 @@ var React = require('react'),
   Button = React.createFactory(Bootstrap.Button),
   Input = React.createFactory(Bootstrap.Input);
 
+var ProductActions = require('../../actions/ProductActions');
+
 var ProductForm = React.createClass({
   render: function() {
     return (
@@ -49,9 +51,9 @@ var ProductForm = React.createClass({
   },
   handleSubmit: function(e) {
     e.preventDefault();
-    
     var data = jQuery('form').serializeObject();    
     console.log(data);
+    ProductActions.create(data);
   }
 });
 
