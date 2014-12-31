@@ -3,13 +3,16 @@
  */
 
 var AppDispatcher = require('../dispatcher/AppDispatcher');
-var EventEmitter = require('events').EventEmitter;
 var ProductConstants = require('../constants/ProductConstants');
+
+var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
+var Immutable = require('immutable');
 
 var CHANGE_EVENT = 'change';
 
-var _todos = {};
+var _products = {};
+var loading = false;
 
 /**
  * Create a TODO item.
@@ -18,7 +21,7 @@ var _todos = {};
 function create(params) {
   
   var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
-  _todos[id] = {
+  _products[id] = {
     id: id,
     complete: false,
     text: text
@@ -28,11 +31,15 @@ function create(params) {
 var ProductStore = assign({}, EventEmitter.prototype, {
   
   /**
-   * Get the entire collection of TODOs.
+   * Get the entire collection of PRODUCTSs.
    * @return {object}
    */
-  getAll: function() {
-    return _todos;
+  getProducts: function() {
+    return _products;
+  },
+  
+  getLoading: function() {
+    return loading
   },
   
   emitChange: function() {
@@ -60,13 +67,44 @@ AppDispatcher.register(function(payload) {
   var params;
   
   switch(action.actionType) {
+    // Create events.
     case ProductConstants.PRODUCT_CREATE:
-      params = action.params;
-      if (params) {
-        create(params);
-      }
+      loading = true;
       break;
     
+    case ProductConstants.PRODUCT_CREATE_SUCCESS:      
+      data = action.data;
+      loading = false;
+      _products[data.id] = data;
+      break;
+    
+    case ProductConstants.PRODUCT_CREATE_FAIL:
+      error = action.error;
+      loading = false;
+      break;
+    
+    // Load Events.
+    case ProductConstants.PRODUCT_LOAD:
+      loading = true;
+      break;
+    
+    case ProductConstants.PRODUCT_LOAD_SUCCESS:
+      var result = {};
+      loading = false;
+      data = action.data;
+            
+      data.map(function(item) {
+        result[item.id] = item;
+      });
+      
+      _products = result;
+      break;
+    
+    case ProductConstants.PRODUCT_CREATE_FAIL:
+      error = action.error;
+      loading = false;
+      break;
+
     default:
       return true;
   }
