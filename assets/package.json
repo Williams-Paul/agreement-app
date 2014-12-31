@@ -10,12 +10,14 @@
     "keymirror": "~0.1.0",
     "object-assign": "^1.0.0",
     "q": "^1.1.2",
+    "q-superagent": "^1.0.1",
     "react": "~0.12.0",
     "react-bootstrap": "^0.13.0",
     "react-bootstrap-async-autocomplete": "0.0.3",
     "react-form-data": "^0.1.0",
     "react-router": "^0.11.4",
-    "request": "^2.51.0"
+    "request": "^2.51.0",
+    "superagent": "^0.21.0"
   },
   "devDependencies": {
     "browserify": "~4.2.2",
