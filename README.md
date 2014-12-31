@@ -56,7 +56,7 @@
   sails lift
   ```
   
-  Para compilar permanente y hacer un scaneo las modificacione de archivos de frontend con browserify usar:
+  Para compilar permanente y hacer un scaneo de las modificacione de archivos de frontend usar:
   
   ```
   npm start
