@@ -17,6 +17,7 @@
     "react-bootstrap-async-autocomplete": "0.0.3",
     "react-form-data": "^0.1.0",
     "react-router": "^0.11.4",
+    "react-router-bootstrap": "^0.7.2",
     "request": "^2.51.0",
     "superagent": "^0.21.0"
   },
