@@ -1,14 +1,13 @@
-/** @jsx React.DOM */
-
-var React = require('react'),
-  jQuery = require('../../config/jquery-extends'),
-  Bootstrap = require('react-bootstrap'),
-  Grid = React.createFactory(Bootstrap.Grid),
-  Row = React.createFactory(Bootstrap.Row),
-  Col = React.createFactory(Bootstrap.Col),
-  PageHeader = React.createFactory(Bootstrap.PageHeader),
-  Button = React.createFactory(Bootstrap.Button),
-  Input = React.createFactory(Bootstrap.Input);
+var React = require('react')
+  , jQuery = require('../../config/jquery-extends')
+  
+  , Bootstrap = require('react-bootstrap')
+  , Grid = React.createFactory(Bootstrap.Grid)
+  , Row = React.createFactory(Bootstrap.Row)
+  , Col = React.createFactory(Bootstrap.Col)
+  , PageHeader = React.createFactory(Bootstrap.PageHeader)
+  , Button = React.createFactory(Bootstrap.Button)
+  , Input = React.createFactory(Bootstrap.Input);
 
 var ProductActions = require('../../actions/ProductActions');
 

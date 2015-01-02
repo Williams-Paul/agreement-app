@@ -1,8 +1,7 @@
-/** @jsx React.DOM */
+var React = require('react')
+  , ReactPropTypes = React.PropTypes;
 
-var React = require('react');
-var ReactPropTypes = React.PropTypes;
-var ProductItem = require('./ProductItem.react');
+var ProductItem = React.createFactory(require('./ProductItem.react.jsx'));
 
 var ProductList = React.createClass({
   propTypes: {
