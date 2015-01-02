@@ -59,6 +59,7 @@
   Para compilar permanente y hacer un scaneo de las modificacione de archivos de frontend usar:
   
   ```
+  cd assets/
   npm start
   ```
   
