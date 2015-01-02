@@ -82,7 +82,7 @@ AppDispatcher.register(function(payload) {
       loading = false;
       break;
 
-    // Load Events.
+      // Load Events.
     case InstitutionConstants.INSTITUTION_LOAD:
       loading = true;
       break;
@@ -102,7 +102,7 @@ AppDispatcher.register(function(payload) {
       loading = false;
       break;
 
-    // Delete Events.
+      // Delete Events.
     case InstitutionConstants.INSTITUTION_DELETE:
       loading = true;
       break;

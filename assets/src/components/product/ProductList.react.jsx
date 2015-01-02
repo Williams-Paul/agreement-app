@@ -7,8 +7,9 @@ var ProductList = React.createClass({
   propTypes: {
     allProducts: ReactPropTypes.object.isRequired
   },
+
   render: function() {
-    
+
     if (Object.keys(this.props.allProducts).length < 1) {
       return null;  
     }
