@@ -13,6 +13,10 @@ var MainHeader = React.createFactory(require('./app/Header.react.jsx'));
 
 var SettingsRoutes = require('./settings/SettingsRoutes.react.jsx');
 
+var AgreementList = require('./agreement/AgreementList.jsx');
+
+var Search = require('./search/Search.jsx');
+
 var App = React.createClass({
   
   render: function() {
@@ -32,6 +36,8 @@ var App = React.createClass({
 var routes = (
   <Route name="app" handler={App} path="/">
     {SettingsRoutes}
+   <Route name="agreement" handler={AgreementList}/>
+   <Route name="search" handler={Search}/>
   </Route>
 );
 

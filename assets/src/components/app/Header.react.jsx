@@ -23,6 +23,9 @@ var Header = React.createClass({
         fixedTop={true}
         fluid={false}>
         <Nav>
+
+          <NavItemLink to="search">Inicio</NavItemLink>
+          <NavItemLink to="agreement">Convenios</NavItemLink>
           <NavItemLink to="settings">Configuraciones</NavItemLink>
           
           <DropdownButton eventKey={3} title="Dropdown">
