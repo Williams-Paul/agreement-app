@@ -16,23 +16,19 @@ InsitutionService = {
       failure(err);
     });
   },
-  
-  update: function() {
-    
+
+  update: function() {},
+
+  destroy: function(id, success, failure) {
+    request.del(_url + id).q(function(res) {
+      if (res.ok) {
+        success(id);
+      }
+    }).fail(function(error) {
+      failure(error);
+    });
   },
-  
-  completeAll: function() {
-    
-  },
-  
-  destroy: function() {
-    
-  },
-  
-  destroyCompleted: function() {
-    
-  },
-  
+
   load: function(success, failure) {
     request.get(_url).q(function(res) {
       var data = res.body;

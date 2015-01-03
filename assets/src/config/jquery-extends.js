@@ -13,8 +13,8 @@ jQuery.fn.serializeObject = function() {
   }
 
   return new FormSerializer(helper).
-    addPairs(form.serializeArray()).
-    serialize();
+  addPairs(form.serializeArray()).
+  serialize();
 };
 
 module.exports = jQuery;

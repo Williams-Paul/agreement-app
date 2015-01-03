@@ -1,6 +1,6 @@
 /**
  * ProductActions
- */ 
+ */
 
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var ProductConstants = require('../constants/ProductConstants');
@@ -12,11 +12,11 @@ var ProductActions = {
    * @param  {string} text
    */
   create: function(params) {
-    
+
     AppDispatcher.handleViewAction({
       actionType: ProductConstants.PRODUCT_CREATE
     });
-    
+
     ProductService.create(params, function(data) {
       AppDispatcher.handleViewAction({
         actionType: ProductConstants.PRODUCT_CREATE_SUCCESS,
@@ -30,11 +30,11 @@ var ProductActions = {
     });
   },
   load: function() {
-    
+
     AppDispatcher.handleViewAction({
       actionType: ProductConstants.PRODUCT_LOAD
     });
-    
+
     ProductService.load(function(data) {
       AppDispatcher.handleViewAction({
         actionType: ProductConstants.PRODUCT_LOAD_SUCCESS,
@@ -46,7 +46,7 @@ var ProductActions = {
         error: error
       });
     });
-    
+
   }
 };
 

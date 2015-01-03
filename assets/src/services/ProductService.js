@@ -16,23 +16,23 @@ ProductService = {
       failure(err);
     });
   },
-  
+
   update: function() {
-    
+
   },
-  
+
   completeAll: function() {
-    
+
   },
-  
+
   destroy: function() {
-    
+
   },
-  
+
   destroyCompleted: function() {
-    
+
   },
-  
+
   load: function(success, failure) {
     request.get(_url).q(function(res) {
       var data = res.body;

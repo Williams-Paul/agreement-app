@@ -19,7 +19,7 @@ var loading = false;
  * @param  {string} text The content of the TODO
  */
 function create(params) {
-  
+
   var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
   _products[id] = {
     id: id,
@@ -29,7 +29,7 @@ function create(params) {
 }
 
 var ProductStore = assign({}, EventEmitter.prototype, {
-  
+
   /**
    * Get the entire collection of PRODUCTSs.
    * @return {object}
@@ -37,11 +37,11 @@ var ProductStore = assign({}, EventEmitter.prototype, {
   getProducts: function() {
     return _products;
   },
-  
+
   getLoading: function() {
     return loading
   },
-  
+
   emitChange: function() {
     this.emit(CHANGE_EVENT);
   },
@@ -65,41 +65,41 @@ var ProductStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload) {
   var action = payload.action;
   var params;
-  
-  switch(action.actionType) {
+
+  switch (action.actionType) {
     // Create events.
     case ProductConstants.PRODUCT_CREATE:
       loading = true;
       break;
-    
-    case ProductConstants.PRODUCT_CREATE_SUCCESS:      
+
+    case ProductConstants.PRODUCT_CREATE_SUCCESS:
       data = action.data;
       loading = false;
       _products[data.id] = data;
       break;
-    
+
     case ProductConstants.PRODUCT_CREATE_FAIL:
       error = action.error;
       loading = false;
       break;
-    
-    // Load Events.
+
+      // Load Events.
     case ProductConstants.PRODUCT_LOAD:
       loading = true;
       break;
-    
+
     case ProductConstants.PRODUCT_LOAD_SUCCESS:
       var result = {};
       loading = false;
       data = action.data;
-            
+
       data.map(function(item) {
         result[item.id] = item;
       });
-      
+
       _products = result;
       break;
-    
+
     case ProductConstants.PRODUCT_CREATE_FAIL:
       error = action.error;
       loading = false;
@@ -108,13 +108,13 @@ AppDispatcher.register(function(payload) {
     default:
       return true;
   }
-  
+
   // This often goes in each case that should trigger a UI change. This store
   // needs to trigger a UI change after every view action, so we can make the
   // code less repetitive by putting it here.  We need the default case,
   // however, to make sure this only gets called after one of the cases above.
   ProductStore.emitChange();
-  
+
   return true;
 });
 

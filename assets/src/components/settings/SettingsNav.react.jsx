@@ -18,7 +18,7 @@ var SettingsNav = React.createClass({
     return (
       <Row>
         <Col lg={3}>
-          <Nav bsStyle="pills">
+          <Nav bsStyle="pills" stacked>
             <NavItemLink to="institution">Instituciones</NavItemLink>
             <NavItemLink to="product" >Productos</NavItemLink>
           </Nav>
