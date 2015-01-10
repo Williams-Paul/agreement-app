@@ -1,20 +1,13 @@
 var React = require('react')
   , Bootstrap = require('react-bootstrap')
-  , Grid = React.createFactory(Bootstrap.Grid)
-  , Row = React.createFactory(Bootstrap.Row)
-  , Col = React.createFactory(Bootstrap.Col)
-  , PageHeader = React.createFactory(Bootstrap.PageHeader);
+  , { Grid, Row, Col, PageHeader } = Bootstrap;
 
 var Router = require('react-router')
-  , RouteHandler = React.createFactory(Router.RouteHandler)
-  , Route = React.createFactory(Router.Route);
+  , { RouteHandler , Route } = Router;
 
-var MainHeader = React.createFactory(require('./app/Header.react.jsx'));
-
-var SettingsRoutes = require('./settings/SettingsRoutes.react.jsx');
-
+var MainHeader = require('./app/Header.jsx');
+var SettingsRoutes = require('./settings/SettingsRoutes.jsx');
 var AgreementList = require('./agreement/AgreementList.jsx');
-
 var Search = require('./search/Search.jsx');
 
 var App = React.createClass({

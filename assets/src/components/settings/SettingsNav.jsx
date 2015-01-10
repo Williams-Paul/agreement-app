@@ -1,17 +1,12 @@
 var React = require('react')
   , Bootstrap = require('react-bootstrap')
-  , Grid = React.createFactory(Bootstrap.Grid)
-  , Row = React.createFactory(Bootstrap.Row)
-  , Col = React.createFactory(Bootstrap.Col)
-  , Nav = React.createFactory(Bootstrap.Nav)
-  , PageHeader = React.createFactory(Bootstrap.PageHeader);
-
+  , { Grid, Row, Col, Nav, PageHeader } = Bootstrap;
+  
 var Router = require('react-router')
-  , RouteHandler = React.createFactory(Router.RouteHandler);
+  , { RouteHandler } = Router;
 
 var ReactRouterBootstrap = require('react-router-bootstrap')
-  , NavItemLink = React.createFactory(ReactRouterBootstrap.NavItemLink)
-  , ButtonLink = React.createFactory(ReactRouterBootstrap.ButtonLink);
+  , { NavItemLink, ButtonLink } = ReactRouterBootstrap;
 
 var SettingsNav = React.createClass({
   render: function() {

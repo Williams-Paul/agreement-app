@@ -1,12 +1,9 @@
 var React = require('react')
   , Bootstrap = require('react-bootstrap')
-  , Grid = React.createFactory(Bootstrap.Grid)
-  , Row = React.createFactory(Bootstrap.Row)
-  , Col = React.createFactory(Bootstrap.Col)
-  , PageHeader = React.createFactory(Bootstrap.PageHeader);
-
-var ProductForm = React.createFactory(require('./ProductForm.react.jsx'));
-var ProductList = React.createFactory(require('./ProductList.react.jsx'));
+  , { Grid, Row, Col, PageHeader } = Bootstrap;
+  
+var ProductForm = require('./ProductForm.jsx');
+var ProductList = require('./ProductList.jsx');
 
 var ProductStore = require('../../stores/ProductStore');
 var ProductActions = require('../../actions/ProductActions');

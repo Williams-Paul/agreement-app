@@ -1,20 +1,13 @@
 var React = require('react');
 
 var Router = require('react-router')
-  , RouteHandler = React.createFactory(Router.RouteHandler)
-  , Route = React.createFactory(Router.Route)
-  , Link = React.createFactory(Router.Link);
-
-var ReactBootstrap = require('react-bootstrap')
-  , Nav = React.createFactory(ReactBootstrap.Nav)
-  , Navbar = React.createFactory(ReactBootstrap.Navbar)
-  , NavItem = React.createFactory(ReactBootstrap.NavItem)
-  , DropdownButton = React.createFactory(ReactBootstrap.DropdownButton)
-  , MenuItem = React.createFactory(ReactBootstrap.MenuItem);
-
+  , { RouteHandler, Route, Link } = Router;
+  
+var Bootstrap = require('react-bootstrap')
+  , { Nav, Navbar, NavItem, DropdownButton, MenuItem } = Bootstrap;
+  
 var ReactRouterBootstrap = require('react-router-bootstrap')
-  , NavItemLink = React.createFactory(ReactRouterBootstrap.NavItemLink)
-  , ButtonLink = React.createFactory(ReactRouterBootstrap.ButtonLink);
+  , { NavItemLink, ButtonLink } = ReactRouterBootstrap;
 
 var Header = React.createClass({
   render: function() {

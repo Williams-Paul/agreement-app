@@ -1,11 +1,10 @@
 var React = require('react')
   , Router = require('react-router')
-  , Route = React.createFactory(Router.Route)
-  , DefaultRoute = React.createFactory(Router.DefaultRoute)
+  , { Route, DefaultRoute } = Router;
   
-  , SettingsNav = require('./SettingsNav.react.jsx')
-  , Product = require('../product/Product.react.jsx')
-  , Institution = require('../institution/Institution.react.jsx');
+var SettingsNav = require('./SettingsNav.jsx')
+  , Product = require('../product/Product.jsx')
+  , Institution = require('../institution/Institution.jsx');
 
 var SettingsRoutes = (
   <Route

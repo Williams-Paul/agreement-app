@@ -1,7 +1,7 @@
 var React = require('react')
   , ReactPropTypes = React.PropTypes;
 
-var ProductItem = React.createFactory(require('./ProductItem.react.jsx'));
+var ProductItem = require('./ProductItem.jsx');
 
 var ProductList = React.createClass({
   propTypes: {
