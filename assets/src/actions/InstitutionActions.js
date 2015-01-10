@@ -47,6 +47,25 @@ var InstitutionActions = {
       });
     });
   },
+  
+  update: function(key, params) {
+    AppDispatcher.handleViewAction({
+      actionType: InstitutionConstants.INSTITUTION_UPDATE
+    });
+
+    InstitutionService.update(key, params, function(data) {
+      AppDispatcher.handleViewAction({
+        actionType: InstitutionConstants.INSTITUTION_UPDATE_SUCCESS,
+        data: data
+      });
+    }, function(error) {
+      AppDispatcher.handleViewAction({
+        actionType: InstitutionConstants.INSTITUTION_UPDATE_FAILURE,
+        error: error
+      });
+    });
+  },
+
 
   load: function() {
 

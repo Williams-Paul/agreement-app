@@ -1,3 +1,3 @@
 /** @jsx React.DOM */
 
-require('./components/App.react.jsx');
+require('./components/App.jsx');

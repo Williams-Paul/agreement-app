@@ -14,12 +14,23 @@ var AppDispatcher = assign(new Dispatcher, {
    * as a view action.  Another variant here could be handleServerAction.
    * @param  {object} action The data coming from the view.
    */
+  
+  handleServerAction: function(action) {
+    var payload = {
+      source: 'SERVER_ACTION',
+      action: action
+    };
+    
+    this.dispatch(payload);
+  },
 
   handleViewAction: function(action) {
-    this.dispatch({
+    var payload = {
       source: 'VIEW_ACTION',
       action: action
-    });
+    };
+    
+    this.dispatch(payload);
   }
 });
 

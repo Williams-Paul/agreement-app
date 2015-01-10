@@ -68,24 +68,21 @@ AppDispatcher.register(function(payload) {
 
   switch (action.actionType) {
 
-    // Create Events.
+    // Initial Events.
     case InstitutionConstants.INSTITUTION_CREATE:
+    case InstitutionConstants.INSTITUTION_LOAD:
+    case InstitutionConstants.INSTITUTION_DELETE:
+    case InstitutionConstants.INSTITUTION_UPDATE:
       loading = true;
       break;
+    
     case InstitutionConstants.INSTITUTION_CREATE_SUCCESS:
       data = action.data;
       loading = false;
       _institutions[data.id] = data;
       break;
-    case InstitutionConstants.INSTITUTION_CREATE_FAIL:
-      error = action.error;
-      loading = false;
-      break;
-
-      // Load Events.
-    case InstitutionConstants.INSTITUTION_LOAD:
-      loading = true;
-      break;
+    
+    // Load Events.
     case InstitutionConstants.INSTITUTION_LOAD_SUCCESS:
       var result = {};
       loading = false;
@@ -94,29 +91,31 @@ AppDispatcher.register(function(payload) {
       data.map(function(item) {
         result[item.id] = item;
       });
-
       _institutions = result;
-      break;
-    case InstitutionConstants.INSTITUTION_LOAD_FAIL:
-      error = action.error;
-      loading = false;
+      
       break;
 
-      // Delete Events.
-    case InstitutionConstants.INSTITUTION_DELETE:
-      loading = true;
-      break;
-
+    // Delete Events.
     case InstitutionConstants.INSTITUTION_DELETE_SUCCESS:
       delete _institutions[action.id];
       loading = false;
       break;
+    
+    case InstitutionConstants.INSTITUTION_UPDATE_SUCCESS:
+      data = action.data;
+      loading = false;
+      _institutions[data.id] = data;
+      break;
 
+    // Fails Events
+    case InstitutionConstants.INSTITUTION_LOAD_FAIL:
+    case InstitutionConstants.INSTITUTION_CREATE_FAIL:
     case InstitutionConstants.INSTITUTION_DELETE_FAIL:
+    case InstitutionConstants.INSTITUTION_UPDATE_FAIL:
       error = action.error;
       loading = false;
       break;
-
+    
     default:
       return true;
   }

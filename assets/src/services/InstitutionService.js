@@ -17,7 +17,15 @@ InsitutionService = {
     });
   },
 
-  update: function() {},
+  update: function(id, data, success, failure) {
+    request.post(_url + id)
+      .send(data).q(function(res) {
+      var data = res.body;
+      success(data);
+    }).fail(function(err) {
+      failure(err);
+    });
+  },
 
   destroy: function(id, success, failure) {
     request.del(_url + id).q(function(res) {
