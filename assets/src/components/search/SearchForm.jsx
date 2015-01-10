@@ -1,10 +1,7 @@
 var React = require('react')
   , Bootstrap = require('react-bootstrap')
-  , Input = React.createFactory(Bootstrap.Input)
-  , Row = React.createFactory(Bootstrap.Row)
-  , Col = React.createFactory(Bootstrap.Col)
-  , Button = React.createFactory(Bootstrap.Button);
-
+  , { Input, Row, Col, Button }= Bootstrap;
+  
 var SearchForm = React.createClass({
 
   render: function () {

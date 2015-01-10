@@ -1,12 +1,9 @@
 var React = require('react')
   , Bootstrap = require('react-bootstrap')
-  , Row = React.createFactory(Bootstrap.Row)
-  , Col = React.createFactory(Bootstrap.Col)
-  , PageHeader = React.createFactory(Bootstrap.PageHeader);
+  , { Row, Col, PageHeader } = Bootstrap;
 
-var SearchForm = React.createFactory(require('./SearchForm.jsx'));
-
-var ResultList = React.createFactory(require('./ResultList.jsx'));
+var SearchForm = require('./SearchForm.jsx');
+var ResultList = require('./ResultList.jsx');
 
 var Search = React.createClass({
 

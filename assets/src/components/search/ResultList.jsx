@@ -1,6 +1,6 @@
 var React = require('react')
   , Bootstrap = require('react-bootstrap')
-  , Jumbotron = React.createFactory(Bootstrap.Jumbotron);
+  , Jumbotron = Bootstrap.Jumbotron;
 
 var ResultList = React.createClass({
 
