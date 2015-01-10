@@ -1,6 +1,6 @@
 var React = require('react')
   , Bootstrap = require('react-bootstrap')
-  , Button = React.createFactory(Bootstrap.Button);
+  , { Button }= Bootstrap;
 
 var AgreementItem = React.createClass({
   render: function () {

@@ -1,11 +1,8 @@
 var React = require('react')
   , Bootstrap = require('react-bootstrap')
-  , Row = React.createFactory(Bootstrap.Row)
-  , Col = React.createFactory(Bootstrap.Col)
-  , PageHeader = React.createFactory(Bootstrap.PageHeader)
-  , Button = React.createFactory(Bootstrap.Button);
+  , { Row, Col, PageHeader, Button } = Bootstrap;
 
-var AgreementItem = React.createFactory(require('./AgreementItem.jsx'));
+var AgreementItem = require('./AgreementItem.jsx');
 
 var AgreementList = React.createClass({
   render: function () {

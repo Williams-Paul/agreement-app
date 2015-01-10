@@ -1,9 +1,6 @@
-/** @jsx React.DOM */
-
 var React = require('react');
-var Bootstrap = require('react-bootstrap');
-var Input = React.createFactory(Bootstrap.Input);
-var PageHeader = React.createFactory(Bootstrap.PageHeader);
+var Bootstrap = require('react-bootstrap')
+  , { Input, PageHeader } = Bootstrap;
 
 var AgreementForm = React.createClass({
   render: function () {
