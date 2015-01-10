@@ -1,7 +1,7 @@
 var React = require('react')
   , ReactPropTypes = React.PropTypes;
 
-var InstitutionItem = React.createFactory(require('./InstitutionItem.react.jsx'));
+var InstitutionItem = require('./InstitutionItem.jsx');
 
 var InstitutionList = React.createClass({
   propTypes: {

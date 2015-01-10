@@ -1,12 +1,9 @@
 var React = require('react')
   , Bootstrap = require('react-bootstrap')
-  , Grid = React.createFactory(Bootstrap.Grid)
-  , Row = React.createFactory(Bootstrap.Row)
-  , Col = React.createFactory(Bootstrap.Col)
-  , PageHeader = React.createFactory(Bootstrap.PageHeader);
+  , { Grid, Row, Col, PageHeader } = Bootstrap;
 
-var InstitutionForm = React.createFactory(require('./InstitutionForm.react.jsx'));
-var InstitutionList = React.createFactory(require('./InstitutionList.react.jsx'));
+var InstitutionForm = require('./InstitutionForm.jsx')
+  , InstitutionList = require('./InstitutionList.jsx');
 
 var InstitutionStore = require('../../stores/InstitutionStore');
 var InstitutionActions = require('../../actions/InstitutionActions');
@@ -38,12 +35,16 @@ var Institution = React.createClass({
   render: function() {
     return (
       <Row>
-        <Col lg={6} xs={6}>
-          <PageHeader>Formulario</PageHeader>
-          <InstitutionForm/>
+        <Col lg={12} xs={12}>
+          <PageHeader>Instituciones Formulario</PageHeader>
         </Col>
         <Col lg={6} xs={6}>
-          <PageHeader>Institutciones</PageHeader>
+          <InstitutionForm 
+            placeholder="Nombre de institutción."
+            onSave={this._onSave} 
+            id={'institution-form'}/>
+        </Col>
+        <Col lg={6} xs={6}>
           <InstitutionList allInstitutions={this.state.allInstitutions}/>
         </Col>
       </Row>
@@ -52,6 +53,12 @@ var Institution = React.createClass({
   
   _onChange: function() {
     this.setState(getInstitutionState());
+  },
+  
+  _onSave: function(data) {
+    if(data) {
+      InstitutionActions.create(data);
+    }
   }
 });
 
