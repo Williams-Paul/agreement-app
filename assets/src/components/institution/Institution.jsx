@@ -36,7 +36,7 @@ var Institution = React.createClass({
     return (
       <Row>
         <Col lg={12} xs={12}>
-          <PageHeader>Instituciones Formulario</PageHeader>
+          <PageHeader>Instituciones</PageHeader>
         </Col>
         <Col lg={6} xs={6}>
           <InstitutionForm 

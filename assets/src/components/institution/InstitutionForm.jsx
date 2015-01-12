@@ -28,12 +28,12 @@ var InstitutionForm = React.createClass({
         <Input 
           placeholder={this.props.placeholder}
           type="text"
-          label="Nombre"
+          label=""
           name="name"
           defaultValue={this.state.value}/>
         <Input
           type='submit'
-          value='Submit button'/>
+          value='Guardar'/>
       </form>
     );
   },
