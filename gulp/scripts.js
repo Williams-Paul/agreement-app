@@ -4,7 +4,7 @@ var gulp = require('gulp')
   , source = require('vinyl-source-stream');
 
 gulp.task('scripts', function() {
-  browserify('./assets/src/app.js')
+  browserify('./assets/src/app.jsx')
     .transform({es6: true}, reactify)
     .bundle()
     .pipe(source('bundle.js'))
