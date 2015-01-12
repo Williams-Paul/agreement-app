@@ -1,12 +1,13 @@
 var React = require('react')
   , Bootstrap = require('react-bootstrap')
   , { Grid, Row, Col, PageHeader } = Bootstrap;
-  
-var ProductForm = require('./ProductForm.jsx');
-var ProductList = require('./ProductList.jsx');
 
 var ProductStore = require('../../stores/ProductStore');
 var ProductActions = require('../../actions/ProductActions');
+
+
+var ProductForm = require('./ProductForm.jsx')
+  , ProductList = require('./ProductList.jsx');
 
 /**
  * Retrive the current PRODUCT

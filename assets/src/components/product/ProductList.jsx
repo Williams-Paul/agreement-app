@@ -1,9 +1,9 @@
 var React = require('react')
-  , ReactPropTypes = React.PropTypes;
-
-var ProductItem = require('./ProductItem.jsx');
+  , ReactPropTypes = React.PropTypes
+  , ProductItem = require('./ProductItem.jsx');
 
 var ProductList = React.createClass({
+
   propTypes: {
     allProducts: ReactPropTypes.object.isRequired
   },
