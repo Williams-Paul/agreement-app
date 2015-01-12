@@ -1,8 +1,14 @@
-var React = require('react');
+var React = require('react')
+  , ReactPropTypes = React.PropTypes;
+
 var Bootstrap = require('react-bootstrap')
   , { Input, PageHeader } = Bootstrap;
 
 var AgreementForm = React.createClass({
+  propTypes: {
+    onSave: ReactPropTypes.func.isRequired
+  },
+
   render: function () {
     return (
         <div>

@@ -1,29 +1,25 @@
 var React = require('react')
+  , AgreementForm = require("./AgreementForm.jsx")
+  , AgreementToolbar = require("./AgreementToolbar.jsx")
   , Bootstrap = require('react-bootstrap')
   , { Row, Col, PageHeader, Button } = Bootstrap;
 
-var AgreementItem = require('./AgreementItem.jsx')
-  , AgreementToolbar = require("./AgreementToolbar.jsx");
-
-var ReactRouterBootstrap = require('react-router-bootstrap')
-  , { NavItemLink, ButtonLink } = ReactRouterBootstrap;
-
-var AgreementList = React.createClass({
+var AgreementCreateForm = React.createClass({
   render: function () {
     return(
       <Row>
         <Col lg={12}>
           <PageHeader>
-            Lista de Convenios
+            Nuevo Convenios
             <div className="pull-right">
               <AgreementToolbar/>
             </div>
           </PageHeader>
-          <AgreementItem/>
+          <AgreementForm/>
         </Col>
       </Row>
       );
-  } 
+  }
 });
 
-module.exports = AgreementList;
+module.exports = AgreementCreateForm;
