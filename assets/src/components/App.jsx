@@ -7,7 +7,7 @@ var Router = require('react-router')
 
 var MainHeader = require('./app/Header.jsx');
 var SettingsRoutes = require('./settings/SettingsRoutes.jsx');
-var AgreementList = require('./agreement/AgreementList.jsx');
+var AgreementRoutes = require("./agreement/AgreementRoutes.jsx");
 var Search = require('./search/Search.jsx');
 
 var App = React.createClass({
@@ -29,7 +29,7 @@ var App = React.createClass({
 var routes = (
   <Route name="app" handler={App} path="/">
     {SettingsRoutes}
-   <Route name="agreement" handler={AgreementList}/>
+    {AgreementRoutes}
    <Route name="search" handler={Search}/>
   </Route>
 );
