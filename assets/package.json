@@ -22,24 +22,13 @@
     "superagent": "^0.21.0"
   },
   "devDependencies": {
-    "browserify": "~4.2.2",
-    "envify": "~2.0.1",
-    "jest-cli": "~0.1.17",
-    "reactify": "~0.14.0",
-    "uglify-js": "~2.4.15",
-    "watchify": "~0.10.2"
+    "jest-cli": "~0.1.17"
   },
   "scripts": {
-    "start": "watchify -o js/bundle.js -v -d .",
-    "build": "browserify . > js/bundle.js",
+    "start": "",
+    "build": "",
     "test": "jest"
   },
   "author": "Joseph Ramos <joseph.ramos@taller.net.br>",
-  "browserify": {
-    "transform": [
-      "reactify",
-      "envify"
-    ]
-  },
   "license": "ISC"
 }
