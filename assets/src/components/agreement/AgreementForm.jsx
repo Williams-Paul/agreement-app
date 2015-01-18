@@ -1,34 +1,39 @@
+
 var React = require('react')
-  , ReactPropTypes = React.PropTypes;
+  , ReactPropTypes = React.PropTypes
+  , jQuery = require('../../config/jquery-extends');
 
 var Bootstrap = require('react-bootstrap')
-  , { Input, PageHeader } = Bootstrap;
+  , {Input, PageHeader} = Bootstrap;
 
 var AgreementForm = React.createClass({
   propTypes: {
+    id: ReactPropTypes.string,
     onSave: ReactPropTypes.func.isRequired
   },
 
   render: function () {
     return (
-        <div>
-          <Input 
+        <form
+          onSubmit={this._save}
+          id={this.props.id}>
+          <Input
             type="textarea"
-            label="Título" 
+            label="Título"
             name="title"/>
 
-          <Input 
+          <Input
             type="textarea"
-            label="Objetivos" 
+            label="Objetivos"
             name="objetives"/>
 
           <Input label="Según tipo de cobertura" wrapperClassName="wrapper">
-            <Input 
+            <Input
               type="radio"
               label="Marco"
               name="coverage"/>
 
-            <Input 
+            <Input
               type="radio"
               label="Específico"
               name="coverage"/>
@@ -51,25 +56,25 @@ var AgreementForm = React.createClass({
 
           <Input type="static" value="Suscripción"/>
 
-          <Input 
+          <Input
             type="text"
             label="Resolución Rectoral"
             name="suscription[resolution]"
             help="Ejm. 1807-2015-R-UNA | sin resolución"/>
 
-          <Input 
+          <Input
             type="date"
             label="Fecha de Suscripción"
             name="suscription[date]"
             help="Ejm. 31/12/204"/>
 
-          <Input 
+          <Input
             type="text"
             label="Vigencia"
             name="suscription[validity]"
             help="Ejm. 2 días | 15 meses | 5 años | 31/12/2014 | indefinido"/>
 
-          <Input 
+          <Input
             type="text"
             label="Responsables"
             name="suscription[responsible]"/>
@@ -83,9 +88,18 @@ var AgreementForm = React.createClass({
             type="submit"
             value="Guardar"/>
 
-        </div>
+        </form>
       );
+  },
 
+  _save: function (e) {
+    e.preventDefault();
+
+    var $form = jQuery('form#' + this.props.id);
+    var data = $form.serializeObject();
+
+    this.props.onSave(data);
+    $form[0].reset();
   }
 });
 
