@@ -10,6 +10,10 @@ var SettingsRoutes = require('./settings/SettingsRoutes.jsx');
 var AgreementRoutes = require("./agreement/AgreementRoutes.jsx");
 var Search = require('./search/Search.jsx');
 
+var Fluxy = require('fluxy');
+
+Fluxy.bootstrap('__fluxy__');
+
 var App = React.createClass({
   
   render: function() {
