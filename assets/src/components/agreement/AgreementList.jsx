@@ -8,8 +8,35 @@ var AgreementItem = require('./AgreementItem.jsx')
 var ReactRouterBootstrap = require('react-router-bootstrap')
   , { NavItemLink, ButtonLink } = ReactRouterBootstrap;
 
+var AgreementStore = require('../../stores/AgreementStore');
+var AgreementActions = require('../../actions/AgreementActions');
+
+function getAgreementState () {
+  return {
+    allAgreements: AgreementStore.get('agreements')
+  };
+}
+
 var AgreementList = React.createClass({
-  render: function () {
+
+  getInitialState: function (){
+    return getAgreementState();
+  },
+
+  componentDidMount: function() {
+    AgreementActions.list();
+    AgreementStore.addWatch(this._onChange);
+  },
+
+  componentWillUnmount: function() {
+    AgreementStore.removeWatch(this._onChange);
+  },
+
+  shouldComponentUpdate: function (nextProps, nextState) {
+    return !AgreementStore.$equals(this.state.allAgreements, nextState.allAgreements);
+  },
+
+  render: function() {
     return(
       <Row>
         <Col lg={12}>
@@ -23,7 +50,12 @@ var AgreementList = React.createClass({
         </Col>
       </Row>
       );
-  } 
+  },
+
+  _onChange: function (keys, oldState, newState) {
+    this.setState(getAgreementState());
+  }
+
 });
 
 module.exports = AgreementList;
