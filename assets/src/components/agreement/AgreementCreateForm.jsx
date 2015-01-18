@@ -4,6 +4,8 @@ var React = require('react')
   , Bootstrap = require('react-bootstrap')
   , { Row, Col, PageHeader, Button } = Bootstrap;
 
+var AgreementActions = require('../../actions/AgreementActions');
+
 var AgreementCreateForm = React.createClass({
   render: function () {
     return(
@@ -15,10 +17,15 @@ var AgreementCreateForm = React.createClass({
               <AgreementToolbar/>
             </div>
           </PageHeader>
-          <AgreementForm/>
+          <AgreementForm
+            id="agreement-form"
+            onSave={this._onSave}/>
         </Col>
       </Row>
-      );
+    );
+  },
+  _onSave: function (agreement) {
+    AgreementActions.create(agreement);
   }
 });
 
