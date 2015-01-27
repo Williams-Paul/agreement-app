@@ -2,131 +2,44 @@
  * Product Store
  */
 
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var InstitutionConstants = require('../constants/InstitutionConstants');
+var InstitutionConstants = require('../constants/InstitutionConstants')
+  , Fluxy = require('fluxy')
+  , $ = Fluxy.$;
 
-var EventEmitter = require('events').EventEmitter;
-var assign = require('object-assign');
-var Immutable = require('immutable');
+var ProductStore = Fluxy.createStore({
+  name: 'ProductStore',
 
-var CHANGE_EVENT = 'change';
-
-var _institutions = {};
-var loading = false;
-
-/**
- * Create a TODO item.
- * @param  {string} text The content of the TODO
- */
-function create(params) {
-
-  var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
-  _institutions[id] = {
-    id: id,
-    complete: false,
-    text: text
-  };
-}
-
-var ProductStore = assign({}, EventEmitter.prototype, {
-
-  /**
-   * Get the entire collection of INSTITUTIONS.
-   * @return {object}
-   */
-  getInstitutions: function() {
-    return _institutions;
+  getInitialState: function() {
+    return {
+      institutions: {}
+    }
   },
 
-  getLoading: function() {
-    return loading;
-  },
+  actions: [
+    [InstitutionConstants.INSTITUTION_LIST_COMPLETED, function (institutions) {
 
-  emitChange: function() {
-    this.emit(CHANGE_EVENT);
-  },
+      var obj = {};
 
-  /**
-   * @param {function} callback
-   */
-  addChangeListener: function(callback) {
-    this.on(CHANGE_EVENT, callback);
-  },
-
-  /**
-   * @param {function} callback
-   */
-  removeChangeListener: function(callback) {
-    this.removeListener(CHANGE_EVENT, callback);
-  }
-});
-
-// Register to handle all updates
-AppDispatcher.register(function(payload) {
-  var action = payload.action;
-  var params;
-
-  switch (action.actionType) {
-
-    // Initial Events.
-    case InstitutionConstants.INSTITUTION_CREATE:
-    case InstitutionConstants.INSTITUTION_LOAD:
-    case InstitutionConstants.INSTITUTION_DELETE:
-    case InstitutionConstants.INSTITUTION_UPDATE:
-      loading = true;
-      break;
-    
-    case InstitutionConstants.INSTITUTION_CREATE_SUCCESS:
-      data = action.data;
-      loading = false;
-      _institutions[data.id] = data;
-      break;
-    
-    // Load Events.
-    case InstitutionConstants.INSTITUTION_LOAD_SUCCESS:
-      var result = {};
-      loading = false;
-      data = action.data;
-
-      data.map(function(item) {
-        result[item.id] = item;
+      institutions.map(function (institution) {
+        obj[institution.id] = institution
       });
-      _institutions = result;
-      
-      break;
 
-    // Delete Events.
-    case InstitutionConstants.INSTITUTION_DELETE_SUCCESS:
-      delete _institutions[action.id];
-      loading = false;
-      break;
-    
-    case InstitutionConstants.INSTITUTION_UPDATE_SUCCESS:
-      data = action.data;
-      loading = false;
-      _institutions[data.id] = data;
-      break;
+      this. setFromJS('institutions', obj);
+    }],
 
-    // Fails Events
-    case InstitutionConstants.INSTITUTION_LOAD_FAIL:
-    case InstitutionConstants.INSTITUTION_CREATE_FAIL:
-    case InstitutionConstants.INSTITUTION_DELETE_FAIL:
-    case InstitutionConstants.INSTITUTION_UPDATE_FAIL:
-      error = action.error;
-      loading = false;
-      break;
-    
-    default:
-      return true;
-  }
-
-  // This often goes in each case that should trigger a UI change. This store
-  // needs to trigger a UI change after every view action, so we can make the
-  // code less repetitive by putting it here.  We need the default case,
-  // however, to make sure this only gets called after one of the cases above.
-  ProductStore.emitChange();
-
-  return true;
+    [InstitutionConstants.INSTITUTION_CREATE_COMPLETED, function(institution) {
+      this.set([
+        'institutions',
+        institution.id
+      ], $.js_to_clj(institution));
+    }],
+    [InstitutionConstants.INSTITUTION_UPDATE_COMPLETED, function (id, institution) {
+      // this.set(['institutions', institutions])
+    }],
+    [InstitutionConstants.INSTITUTION_DESTROY_COMPLETED, function (id) {
+      // this.set(['institutions', institutions])
+    }]
+  ]
 });
 
 module.exports = ProductStore;

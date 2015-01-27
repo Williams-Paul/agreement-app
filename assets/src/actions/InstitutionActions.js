@@ -1,91 +1,30 @@
 /**
- * InstitutionActions
+ * Institution Actions
  */
 
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var InstitutionConstants = require('../constants/InstitutionConstants');
-var InstitutionService = require('../services/InstitutionService');
+var Fluxy = require('fluxy')
+  , InstitutionConstants = require('../constants/InstitutionConstants')
+  , InstitutionService = require('../services/InstitutionService');
 
-var InstitutionActions = {
+var InstitutionActions = Fluxy.createActions({
+  serviceActions: {
 
-  /**
-   * @param  {string} text
-   */
-  create: function(params) {
+    list: [InstitutionConstants.INSTITUTION_LIST, function() {
+      return InstitutionService.list(); // return promise
+    }],
 
-    AppDispatcher.handleViewAction({
-      actionType: InstitutionConstants.INSTITUTION_CREATE
-    });
+    create: [InstitutionConstants.INSTITUTION_CREATE, function(institution) {
+      return InstitutionService.create(institution);
+    }],
 
-    InstitutionService.create(params, function(data) {
-      AppDispatcher.handleViewAction({
-        actionType: InstitutionConstants.INSTITUTION_CREATE_SUCCESS,
-        data: data
-      });
-    }, function(error) {
-      AppDispatcher.handleViewAction({
-        actionType: InstitutionConstants.INSTITUTION_CREATE_FAILURE,
-        error: error
-      });
-    });
-  },
+    update: [InstitutionConstants.INSTITUTION_UPDATE, function(id, institution) {
+      return InstitutionService.udpated(id, institution);
+    }],
 
-  destroy: function(key) {
-    AppDispatcher.handleViewAction({
-      actionType: InstitutionConstants.INSTITUTION_DELETE
-    });
-
-    InstitutionService.destroy(key, function(id) {
-      AppDispatcher.handleViewAction({
-        actionType: InstitutionConstants.INSTITUTION_DELETE_SUCCESS,
-        id: id
-      });
-    }, function(error) {
-      AppDispatcher.handleViewAction({
-        actionType: InstitutionConstants.INSTITUTION_DELETE_FAILURE,
-        error: error
-      });
-    });
-  },
-  
-  update: function(key, params) {
-    AppDispatcher.handleViewAction({
-      actionType: InstitutionConstants.INSTITUTION_UPDATE
-    });
-
-    InstitutionService.update(key, params, function(data) {
-      AppDispatcher.handleViewAction({
-        actionType: InstitutionConstants.INSTITUTION_UPDATE_SUCCESS,
-        data: data
-      });
-    }, function(error) {
-      AppDispatcher.handleViewAction({
-        actionType: InstitutionConstants.INSTITUTION_UPDATE_FAILURE,
-        error: error
-      });
-    });
-  },
-
-
-  load: function() {
-
-    AppDispatcher.handleViewAction({
-      actionType: InstitutionConstants.INSTITUTION_LOAD
-    });
-
-    InstitutionService.load(function(data) {
-      AppDispatcher.handleViewAction({
-        actionType: InstitutionConstants.INSTITUTION_LOAD_SUCCESS,
-        data: data
-      });
-    }, function(error) {
-      AppDispatcher.handleViewAction({
-        actionType: InstitutionConstants.INSTITUTION_LOAD_FAIL,
-        error: error
-      });
-    });
-
+    destroy: [InstitutionConstants.INSTITUTION_DESTROY, function(id) {
+      return InstitutionService.destroy(id);
+    }]
   }
-};
+});
 
 module.exports = InstitutionActions;

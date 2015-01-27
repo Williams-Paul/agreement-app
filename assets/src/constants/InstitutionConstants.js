@@ -2,22 +2,16 @@
  * ProductConstants
  */
 
-var keyMirror = require('keymirror');
+var Fluxy = require('fluxy');
 
-module.exports = keyMirror({
-  'INSTITUTION_CREATE': null,
-  'INSTITUTION_CREATE_SUCCESS': null,
-  'INSTITUTION_CREATE_FAIL': null,
-
-  'INSTITUTION_DELETE': null,
-  'INSTITUTION_DELETE_SUCCESS': null,
-  'INSTITUTION_DELETE_FAILURE': null,
-  
-  'INSTITUTION_UPDATE': null,
-  'INSTITUTION_UPDATE_SUCCESS': null,
-  'INSTITUTION_UPDATE_FAILURE': null,
-
-  'INSTITUTION_LOAD': null,
-  'INSTITUTION_LOAD_SUCCESS': null,
-  'INSTITUTION_LOAD_FAIL': null
+var InstitutionConstants = Fluxy.createConstants({
+  serviceMessages: [
+    'INSTITUTION_ONE',
+    'INSTITUTION_LIST',
+    'INSTITUTION_CREATE',
+    'INSTITUTION_UPDATE',
+    'INSTITUTION_DESTROY'
+  ]
 });
+
+module.exports = InstitutionConstants;

@@ -1,3 +1,7 @@
+/**
+ * Agreement Store
+ */
+
 var AgreementConstants = require('../constants/AgreementConstants')
   , Fluxy = require('fluxy')
   , $ = Fluxy.$;

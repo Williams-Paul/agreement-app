@@ -2,49 +2,76 @@
  * InsitutionService
  */
 
-var request = require('superagent');
-require('q-superagent')(request);
+var Promise = require('bluebird');
+var superagent = require('superagent');
+var Fluxy = require('fluxy');
+var _url = '/institution';
+var _urlId = '/institution/';
 
-var _url = '/institution/';
-
-InsitutionService = {
-  create: function(data, success, failure) {
-    request.post(_url).send(data).q(function(res) {
-      var data = res.body;
-      success(data);
-    }).fail(function(err) {
-      failure(err);
-    });
-  },
-
-  update: function(id, data, success, failure) {
-    request.post(_url + id)
-      .send(data).q(function(res) {
-      var data = res.body;
-      success(data);
-    }).fail(function(err) {
-      failure(err);
-    });
-  },
-
-  destroy: function(id, success, failure) {
-    request.del(_url + id).q(function(res) {
-      if (res.ok) {
-        success(id);
+/*
+ * monkey patch superagent to make it promise-able
+ */
+superagent.Request.prototype.promise = function () {
+  var token = Promise.defer();
+  this.end(function (err, res) {
+    if (err) { return token.reject(err); }
+    if (res.status !== 200) {
+      if (res.body && res.body.error) {
+        token.reject(res.body);
       }
-    }).fail(function(error) {
-      failure(error);
-    });
+      else {
+        token.reject(res.error);
+      }
+    }
+    else {
+      token.resolve(res.body);
+    }
+  });
+  return token.promise;
+};
+
+var InsitutionService = {
+  one: function (id) {
+    return superagent
+      .get(_urlId + id)
+      .accept('json')
+      .type('json')
+      .promise();
   },
 
-  load: function(success, failure) {
-    request.get(_url).q(function(res) {
-      var data = res.body;
-      success(data);
-    }).fail(function(error) {
-      failure(error);
-    });
+  list: function () {
+    return superagent
+      .get(_url)
+      .accept('json')
+      .type('json')
+      .promise();
+  },
+
+  create: function(agreement) {
+    return superagent
+      .post(_url)
+      .accept('json')
+      .type('json')
+      .send(agreement)
+      .promise();
+  },
+
+  update: function (id, agreement) {
+    return superagent
+      .post(_urlId + id)
+      .accept('json')
+      .type('json')
+      .send(agreement)
+      .promise();
+  },
+
+  destroy: function (id) {
+    return superagent
+      .del(_urlId + id)
+      .accept('json')
+      .type('json')
+      .promise();
   }
-}
+};
 
 module.exports = InsitutionService;

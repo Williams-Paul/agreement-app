@@ -7,6 +7,7 @@ var superagent = require('superagent');
 var Fluxy = require('fluxy');
 var _url = '/agreement';
 var _urlId = '/agreement/';
+
 /*
  * monkey patch superagent to make it promise-able
  */

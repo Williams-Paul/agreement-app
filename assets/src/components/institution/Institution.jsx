@@ -10,28 +10,32 @@ var InstitutionActions = require('../../actions/InstitutionActions');
 
 /**
  * Retrive the current Institution
- */ 
+ */
 function getInstitutionState() {
   return {
-    allInstitutions: InstitutionStore.getInstitutions()
+    allInstitutions: InstitutionStore.getAsJS('institutions')
   }
-}; 
+};
 
 var Institution = React.createClass({
-  
+
   getInitialState: function() {
     return getInstitutionState();
   },
-  
+
   componentDidMount: function() {
-    InstitutionActions.load();
-    InstitutionStore.addChangeListener(this._onChange);
+    InstitutionActions.list();
+    InstitutionStore.addWatch(this._onChange);
   },
-  
+
   componentWillUnmount: function() {
-    InstitutionStore.removeChangeListener(this._onChange);
+    InstitutionStore.removeWatch(this._onChange);
   },
-  
+
+  shouldComponentUpdate: function (nextProps, nextState) {
+    return !InstitutionStore.$equals(this.state.allInstitutions, nextState.allInstitutions);
+  },
+
   render: function() {
     return (
       <Row>
@@ -39,9 +43,9 @@ var Institution = React.createClass({
           <PageHeader>Instituciones</PageHeader>
         </Col>
         <Col lg={6} xs={6}>
-          <InstitutionForm 
+          <InstitutionForm
             placeholder="Nombre de institutción."
-            onSave={this._onSave} 
+            onSave={this._onSave}
             id={'institution-form'}/>
         </Col>
         <Col lg={6} xs={6}>
@@ -50,11 +54,11 @@ var Institution = React.createClass({
       </Row>
     );
   },
-  
+
   _onChange: function() {
     this.setState(getInstitutionState());
   },
-  
+
   _onSave: function(data) {
     if(data) {
       InstitutionActions.create(data);

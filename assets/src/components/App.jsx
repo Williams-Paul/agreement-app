@@ -15,7 +15,7 @@ var Fluxy = require('fluxy');
 Fluxy.bootstrap('__fluxy__');
 
 var App = React.createClass({
-  
+
   render: function() {
    return (
      <Grid>
@@ -26,7 +26,7 @@ var App = React.createClass({
         </Col>
       </Row>
      </Grid>
-   ); 
+   );
   }
 });
 
